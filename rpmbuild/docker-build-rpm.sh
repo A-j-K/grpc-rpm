@@ -31,3 +31,9 @@ rpmbuild -ba \
   -D "release 1" \
   -without check \
   "${BUILD_ROOT}/SPECS/protobuf.spec"
+
+echo "Building grpc python with cython..."
+VERSION=`grep "Version: " ${BUILD_ROOT}/SPECS/grpc.spec |awk '{print $2}'`
+cd ${BUILD_ROOT}/BUILD/grpc-${VERSION}/
+GRPC_PYTHON_BUILD_WITH_CYTHON=1 python setup.py bdist
+mv ${BUILD_ROOT}/BUILD/grpc-${VERSION}/dist/* ${BUILD_ROOT}/RPMS/`uname -m`

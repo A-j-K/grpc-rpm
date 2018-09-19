@@ -42,6 +42,13 @@ make %{?_smp_mflags} prefix=%{_prefix} libdir=%{_libdir}
 
 %install
 make install prefix=%{buildroot}%{_prefix} libdir=%{buildroot}%{_libdir}
+# A kludge to fix grpc "make install". Proper fix should be done inside grpc build script.
+cd %{buildroot}%{_prefix}/lib
+ln -sf libgrpc++.so.%{version} libgrpc++.so.1
+ln -sf libgrpc++_cronet.so.%{version} libgrpc++_cronet.so.1
+ln -sf libgrpc++_error_details.so.%{version} libgrpc++_error_details.so.1
+ln -sf libgrpc++_reflection.so.%{version} libgrpc++_reflection.so.1
+ln -sf libgrpc++_unsecure.so.%{version} libgrpc++_unsecure.so.1
 
 # Makefile fix
 %{__mv} %{buildroot}%{_prefix}/lib %{buildroot}%{_libdir}

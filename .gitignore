@@ -1,2 +1,6 @@
 rpmbuild/BUILD
 rpmbuild/BUILDROOT
+rpmbuild/.bash_history
+rpmbuild/.cache
+rpmbuild/RPMS
+rpmbuild/SRPMS
