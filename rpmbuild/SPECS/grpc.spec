@@ -1,6 +1,6 @@
 Name:           grpc
 Summary:        Implementation of the gRPC protocol
-Version:        1.15.0
+Version:        1.24.0
 
 %{!?release: %define release 1}
 Release: %{?release}%{?dist}

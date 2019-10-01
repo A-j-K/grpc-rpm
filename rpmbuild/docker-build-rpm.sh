@@ -14,11 +14,14 @@ if [ $(id -u) != "$extuid" ]; then
     --uid $extuid \
     --gid $extgid \
     --no-create-home
+  # Hack. Moved it to base image in future.
+  pip install -U setuptools
   su build "$0" "$@"
   exit 0
 fi
 
 echo "Building grpc RPMs..."
+
 rpmbuild -ba \
   -D "_topdir ${BUILD_ROOT}" \
   -D "release 1" \
@@ -35,5 +38,5 @@ rpmbuild -ba \
 echo "Building grpc python with cython..."
 VERSION=`grep "Version: " ${BUILD_ROOT}/SPECS/grpc.spec |awk '{print $2}'`
 cd ${BUILD_ROOT}/BUILD/grpc-${VERSION}/
-GRPC_PYTHON_BUILD_WITH_CYTHON=1 python setup.py bdist
+GRPC_PYTHON_BUILD_WITH_CYTHON=yes python setup.py bdist
 mv ${BUILD_ROOT}/BUILD/grpc-${VERSION}/dist/* ${BUILD_ROOT}/RPMS/`uname -m`

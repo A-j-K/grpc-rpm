@@ -1,5 +1,5 @@
 Name:           protobuf
-Version:        3.0.x
+Version:        3.9.0
 Summary:        Implementation of the google protobuf protocol
 
 %{!?release: %define release 1}
@@ -7,7 +7,7 @@ Release: %{?release}%{?dist}
 
 License:        BSD
 URL:            https://github.com/google/protobuf.git
-Source:         protobuf-3.0.x.tar.gz
+Source:         protobuf-3.9.0.tar.gz
 
 BuildRequires:  libtool
 
